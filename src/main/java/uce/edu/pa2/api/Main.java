@@ -4,9 +4,12 @@ import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.enterprise.inject.spi.CDI;
+import jakarta.inject.Inject;
 
 @QuarkusMain
 public class Main {
+
+    
 
     public static void main(String... args) {
 
@@ -18,7 +21,8 @@ public class Main {
     public static class App implements QuarkusApplication{
         //@Inject
         //private PedidoService pedidoService;
-
+        @Inject
+        private PedidoService pedidoService2;
 
         private PedidoService pedidoService = CDI.current().select(PedidoService.class).get();
 
@@ -26,7 +30,7 @@ public class Main {
         public int run(String... args) throws Exception {
 
         PedidoService pedidoService = CDI.current().select(PedidoService.class).get();
-
+        
 
         Pedido pedido1 = new Pedido("Esteban Chachalo", "Coquita", 10, "ea@gmail.com");
         Pedido pedido2 = new Pedido("John Cordova", "Cola", 200, "Jhon@uce.com");
@@ -36,8 +40,8 @@ public class Main {
 
 
         pedidoService.registrar(pedido1);
-        //this.pedidoService.registrar(pedido2);
-        //this.pedidoService.registrar(pedido3);
+        pedidoService.registrar(pedido2);
+        pedidoService.registrar(pedido3);
         
 
 
