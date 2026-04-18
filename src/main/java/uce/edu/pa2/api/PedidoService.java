@@ -35,21 +35,43 @@ public class PedidoService {
     @Inject
     private NotificadorSelector selector; 
 
+    @Inject
+    private ComprobantePDF comprobantePdf;
 
-     public void registrar(Pedido pedido){
+    @Inject
+    private ComprobanteFisico comprobanteFisico;
+
+    private PagoEstrategia pago;
+
+
+     public void registrar(Pedido pedido, PagoEstrategia pago){
 
         System.out.println("Registrando pedido");
         System.out.println("Cliente:" + pedido.getCliente());
         System.out.println("Total: " + pedido.getTotal());
         System.out.println("Guardando en la base de datos");
 
+        this.pago.realizar(pedido.getTotal());
+
+        if (pedido.getDestino() != null && !pedido.getDestino().trim().isEmpty()) {
+            comprobantePdf.generar(pedido);
+        } else {
+            comprobanteFisico.generar(pedido);
+        }
+
+        // 3. Notificación (Tu código original mantenido intacto)
+        if (this.selector != null) {
+            Notificador notificador = this.selector.seleccionar(pedido.getTotal());
+            notificador.enviar(pedido.getDestino(), "Pedido registrado");
+        }
+
         //sin DI
         //NotificadorMail n1 = new NotificadorMail();
         
         //notificamos al cliente que se ha creado el pedido
         //Con DI por el contenedor
-        Notificador notificador = this.selector.seleccionar(pedido.getTotal());
-        notificador.enviar(pedido.getDestino(), "Pedido registrado");
+        //Notificador notificador = this.selector.seleccionar(pedido.getTotal());
+        //notificador.enviar(pedido.getDestino(), "Pedido registrado");
 
     }
 
