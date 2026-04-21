@@ -41,7 +41,7 @@ public class PedidoService {
     @Inject
     private ComprobanteFisico comprobanteFisico;
 
-    private PagoEstrategia pago;
+    //private PagoEstrategia pago;
 
 
      public void registrar(Pedido pedido, PagoEstrategia pago){
@@ -51,7 +51,7 @@ public class PedidoService {
         System.out.println("Total: " + pedido.getTotal());
         System.out.println("Guardando en la base de datos");
 
-        this.pago.realizar(pedido.getTotal());
+        pago.realizar(pedido.getTotal());
 
         if (pedido.getDestino() != null && !pedido.getDestino().trim().isEmpty()) {
             comprobantePdf.generar(pedido);
@@ -59,10 +59,9 @@ public class PedidoService {
             comprobanteFisico.generar(pedido);
         }
 
-        // 3. Notificación (Tu código original mantenido intacto)
         if (this.selector != null) {
-            Notificador notificador = this.selector.seleccionar(pedido.getTotal());
-            notificador.enviar(pedido.getDestino(), "Pedido registrado");
+            //Notificador notificador = this.selector.seleccionar(pedido.getTotal());
+            //notificador.enviar(pedido.getDestino(), "Pedido registrado");
         }
 
         //sin DI
