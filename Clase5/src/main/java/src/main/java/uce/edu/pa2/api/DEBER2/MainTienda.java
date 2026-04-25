@@ -18,6 +18,12 @@ public class MainTienda {
     private ProcesadorVentaService procesadorVentaService;
 
     @Inject
+    private ProcesadorVentaService1 procesadorVentaService1;
+
+    @Inject
+    private ProcesadorVentaEnLinea procesadorVentaEnLinea;
+
+    @Inject
     private EstadisticasVentasGlobales estadisticasVentasGlobales;
 
 
@@ -32,6 +38,15 @@ public class MainTienda {
 
             Venta venta3 = new Venta("Carlos", 444);
             this.procesadorVentaService.procesar(venta3);
+
+            Venta venta4 = new Venta("Carlos", 666);
+            this.procesadorVentaService1.procesar1(venta4);
+
+            Venta venta5 = new Venta("Carlos", 777);
+            this.procesadorVentaService1.procesar1(venta5);
+
+            Venta venta6 = new Venta("juan", 888);
+            this.procesadorVentaEnLinea.procesar2(venta6);
 
 
             this.estadisticasVentasGlobales.mostrarEstadisticasGlobales();

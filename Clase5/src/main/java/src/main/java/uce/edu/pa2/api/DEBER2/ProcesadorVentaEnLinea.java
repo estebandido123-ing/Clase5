@@ -4,19 +4,19 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
+public class ProcesadorVentaEnLinea {
 
-public class ProcesadorVentaService {
     @Inject
-    private EstadisticasVentasGlobales estadisticasVentasGlobales;
+    private EstadisticasVentasGlobales estadisticasVentasGlobales2;
 
     @Inject//aqui, como inyecto TrakingVenta se crea un objeto
-    private TrakingVenta trakingVenta;
+    private TrakingVenta trakingVenta2;
 
-    public void procesar(Venta venta){
-        this.trakingVenta.iniciar();
+    public void procesar2(Venta venta){
+        this.trakingVenta2.iniciar();
         //Inicio de la venta
 
-        System.out.println("Procesando pedido");
+        System.out.println("Procesando pedido en linea");
         //consultando el stock de cada item
         //consultando en la base datos
         //finaliza venta
@@ -27,10 +27,10 @@ public class ProcesadorVentaService {
 
         }
 
-        this.trakingVenta.finalizar();
+        this.trakingVenta2.finalizar();
 
         //registrar estadisticas
-        this.estadisticasVentasGlobales.registrarVenta(venta.getTotal());
+        this.estadisticasVentasGlobales2.registrarVenta(venta.getTotal());
     }
 
 }
