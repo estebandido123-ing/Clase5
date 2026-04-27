@@ -60,3 +60,57 @@ If you want to learn more about building native executables, please consult <htt
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+
+
+A. @ApplicationScoped
+El bean se crea una sola vez para toda la aplicación y se accede a él a través de un proxy. Es la opción recomendada para la mayoría de los servicios en Quarkus porque permite la recarga en caliente (Hot Reload).
+
+1_Servicio de Autenticación: Para validar tokens en toda la app.
+
+2_Repositorio de Usuarios: Acceso a base de datos persistente.
+
+3_Gestor de Configuración: Leer variables del application.properties.
+
+4_Cliente REST Externo: Bean que consume una API de terceros.
+
+5_Procesador de Pagos: Lógica de negocio centralizada.
+
+6_Servicio de Email: Bean encargado de encolar correos.
+
+7_Validador de Reglas de Negocio: Lógica compartida por varios endpoints.
+
+B. @Singleton
+Similar a ApplicationScoped, pero no usa un proxy. El bean es la instancia directa. Es más eficiente en rendimiento pero menos flexible (no funciona bien con Mockito en tests o con Hot Reload en ciertos casos).
+
+1_Caché de Solo Lectura: Almacenar datos estáticos que no cambian.
+
+2_Contador Global de Visitas: Un simple AtomicInteger compartido.
+
+3_Diccionario de Códigos de Error: Mapeo estático de excepciones.
+
+4_Registro de Auditoría Simple: Logger personalizado de sistema.
+
+5_Configuración de Hardware: Si el software interactúa con un sensor específico.
+
+6_Pool de Conexiones Fijo: Gestión de recursos limitados.
+
+7_Filtro de Seguridad Global: Interceptor único de peticiones.
+
+C. @Dependent
+Es el ámbito por defecto. Se crea una nueva instancia cada vez que se inyecta el bean y su vida depende del objeto que lo contiene.
+
+1_Generador de Números Aleatorios: Para obtener una semilla nueva cada vez.
+
+2_Helper de Formateo de Fechas: Utilidad que no necesita mantener estado.
+
+3_Calculadora de Impuestos Temporal: Instancia creada para una operación única.
+
+4_Mapper de DTO a Entidad: Conversor de datos de un solo uso.
+
+5_Logger Específico por Clase: Para que cada clase tenga su propio rastro.
+
+6_Validador de Formulario: Objeto creado para validar un request específico.
+
+7_Generador de IDs Temporales: Para crear folios únicos en procesos aislados.
+
