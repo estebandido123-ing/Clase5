@@ -1,5 +1,9 @@
 package src.main.java.uce.edu.pa2.api.DEBER2;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+
 public class Venta {
     
     private String cliente;

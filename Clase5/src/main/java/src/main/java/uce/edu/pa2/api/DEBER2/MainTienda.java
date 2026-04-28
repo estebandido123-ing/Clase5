@@ -14,42 +14,32 @@ public class MainTienda {
 
     public static class App implements QuarkusApplication {
 
+    
     @Inject
-    private ProcesadorVentaService procesadorVentaService;
+    private ProcesadorServiceTiempo procesadorServiceTiempo;
 
     @Inject
-    private ProcesadorVentaService1 procesadorVentaService1;
-
-    @Inject
-    private ProcesadorVentaEnLinea procesadorVentaEnLinea;
-
-    @Inject
-    private EstadisticasVentasGlobales estadisticasVentasGlobales;
-
+    private InventarioService inventarioService;
 
         @Override
         public int run(String... args) throws Exception {
 
-            Venta venta = new Venta("Esteban", 250);
-            this.procesadorVentaService.procesar(venta);
-
-            Venta venta2 = new Venta("Abel", 300);
-            this.procesadorVentaService.procesar(venta2);
-
-            Venta venta3 = new Venta("Carlos", 444);
-            this.procesadorVentaService.procesar(venta3);
-
-            Venta venta4 = new Venta("Carlos", 666);
-            this.procesadorVentaService1.procesar1(venta4);
-
-            Venta venta5 = new Venta("Carlos", 777);
-            this.procesadorVentaService1.procesar1(venta5);
-
-            Venta venta6 = new Venta("juan", 888);
-            this.procesadorVentaEnLinea.procesar2(venta6);
+        Venta venta = new Venta("Esteban", 250);
+        this.procesadorServiceTiempo.procesar(venta);
+        this.procesadorServiceTiempo.reprocesar(venta);
 
 
-            this.estadisticasVentasGlobales.mostrarEstadisticasGlobales();
+        Venta venta1 = new Venta("Abel", 500);
+        this.inventarioService.procesarInventario(venta1);
+        this.inventarioService.reprocesarInventario(venta1);
+
+
+
+
+
+
+
+        //this.estadisticasVentasGlobales.mostrarEstadisticasGlobales();
 
 
 
