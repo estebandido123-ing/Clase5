@@ -24,7 +24,7 @@ public class LogInterceptor {
             System.out.println("Argumento: "+ args[i]);
             Object obj = args[i];
             Venta venta = (Venta) obj;
-            System.out.println(venta.getCliente());
+            //System.out.println(venta.getCliente());
             System.out.println(venta.getTotal());
      
 
