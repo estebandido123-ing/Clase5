@@ -1,8 +1,10 @@
 package src.main.java.uce.edu.pa2.api.Deber3;
 
+import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
+@Priority(4)
 public class ImpuestoVerde implements Impuesto {
 
     @Override

@@ -1,8 +1,11 @@
 package src.main.java.uce.edu.pa2.api.Deber3;
 
+import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
+@Priority(3)
+    
 public class ImpuestoLujo implements Impuesto {
 
     @Override

@@ -1,8 +1,11 @@
 package src.main.java.uce.edu.pa2.api.Deber3;
 
+import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
+@Priority(1)
+
 
 public class DescuentoIVA implements Descuento{
 
@@ -10,7 +13,7 @@ public class DescuentoIVA implements Descuento{
 
     @Override
     public double aplicar(double valor) {
-        //System.out.println("Aplicando IVA");
+        System.out.println("Aplicando IVA");
 
         double valorADescontar = valor * 0.15;
 
